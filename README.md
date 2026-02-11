@@ -18,18 +18,22 @@ With stampede, 3 identical requests = 1 LLM call = 1x cost.
 ## Install
 
 ```bash
-# Core (zero deps, pure asyncio)
-pip install stampede
+# Core (zero deps, pure asyncio + C-accelerated hashing)
+pip install stampede-cache
 
 # With Redis distributed caching
-pip install stampede[redis]
+pip install stampede-cache[redis]
 
 # With semantic similarity caching (pgvector)
-pip install stampede[semantic]
+pip install stampede-cache[semantic]
 
 # Everything
-pip install stampede[all]
+pip install stampede-cache[all]
 ```
+
+> **Note:** The import name is `stampede`, not `stampede_cache`.
+> The C extension for hashing compiles automatically during install (~100x faster).
+> Falls back to pure Python if no C compiler is available.
 
 ## Quick Start
 
